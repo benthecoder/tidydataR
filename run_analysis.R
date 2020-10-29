@@ -10,7 +10,7 @@
 if (!require("pacman")) {
     install.packages("pacman")
 }
-pacman::p_load(data.table, reshape2)
+pacman::p_load(data.table, reshape2, gsubfn)
 
 # get data from zip file
 path <- getwd()
