@@ -32,8 +32,19 @@ features <-fread(
 # extracting mean and std from features
 featuresNeeded <- grep("(mean|std)\\(\\)", features[, featureNames])
 measurements <- features[featuresNeeded, featureNames]
-measurements <- gsub("[()]", "", measurements) # removing parentheses
-
+measurements <- gsubfn(
+    "(^t|^f|Acc|Gyro|Mag|BodyBody|\\(\\))",
+    list(
+        "t" = "Time",
+        "f" = "Frequency",
+        "Acc" = "Accelerometer",
+        "Gyro" = "Gyroscope",
+        "Mag" = "Magnitude",
+        "BodyBody" = "Body",
+        "()" = ""
+    ),
+    measurements
+)
 # load train data
 ## read in train, filtering based on features needed, using with=False to retain data.frame class
 train <- fread(file.path(path, "/UCI HAR Dataset/train/X_train.txt"))[, featuresNeeded, with = FALSE]

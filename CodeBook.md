@@ -58,4 +58,13 @@ The following files are available for the train and test data. Their description
 #### Brief walkthrough of thought process
 The installation and getting data uses common techniques taught in lectures with `download.file`, along with reading data with `fread`. To merge the training and test set, we h ave to first filter out the mean and standard deviation first with `grep`, and to do that we load the activity labels and features text file, grabbing patterns which matches the words "mean", and "str". We also create a measurements variable which contains the variable names to be labelled on the test and training data set, and tidying the name with `gsub`. Then with the column indexes containing mean and std, the train and test set files can be loaded. We also rename the variables using the `setnames()` functions. After than both the train and test file can be merged with `rbind`. 
 
-With a merged dataset, the crucial part comes where we have to create an new data set with the average of each variable for each activity and each subject. To do that we first have to convert the variables in the `Activity` and `SubjectNo.` columns into factors. Then, and only then, can we utilize the reshape library to `melt` and `cast` the variables, in order to get the mean. Finally write the tidy and clean dataset into a new file.
+With a merged data set, the crucial part comes where we have to create an new data set with the average of each variable for each activity and each subject. To do that we first have to convert the variables in the `Activity` and `SubjectNo.` columns into factors. Then, and only then, can we utilize the reshape library to `melt` and `cast` the variables, in order to get the mean. Finally write the tidy and clean dataset into a new file.
+
+#### As for giving descriptive names for labels, here's what I changed
+* "t" = "Time"
+* "f" = "Frequency"
+* "Acc" = "Accelerometer"
+* "Gyro" = "Gyroscope"
+* "Mag" = "Magnitude"
+* "BodyBody" = "Body"
+* "()" = "" 
